@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gibrosen Fire Safety Products MIS</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+     <!-- MORRIS CHART STYLES-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">GFSP MIS</a> 
+            </div>
+  <div style="color: white;
+padding: 15px 50px 5px 50px;
+float: right;
+font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+        </nav>   
+           <!-- /. NAV TOP  -->
+                <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+             <ul class="nav" id="main-menu">
+				<li class="text-center">
+                    <img src="assets/img/find_user.png" class="user-image img-responsive"/>
+					</li>				
+                    <li>
+                        <a href="index.html"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                    </li>    
+                    <li >
+                        <a  href="#"><i class="fa fa-folder fa-3x"></i>Master Files <span class="fa arrow"></span></a>
+                          <ul class="nav nav-second-level">
+                                <li>
+                                   <a href="master-file_client.html">Client</a>                                        
+                                </li>
+                                <li>
+                                   <a href="master-file_suppliers.html">Supplier</a>                                    
+                                </li>
+                                <li>
+                                   <a href="master-file_employees.html">Employee</a>              
+                                </li>                                
+                          </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-edit fa-3x"></i> Transactions<span class="fa arrow"></span> </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="transactions-sales.html" >Sales</a>
+                            </li>
+                            <li>
+                                <a href="transactions-purchases.html" >Purchases</a>
+                            </li>
+                            <li>
+                                <a href="transactions-inspection.html" >Inspection</a>
+                            </li>
+                            <li>
+                                <a href="transactions-delivery.html" >Delivery</a>
+                            </li>
+                            <li>
+                                <a href="transactions-maintenance">Maintenance</a>
+                            </li>
+                             <li>
+                                <a href="transactions-installation.html" >Installation</a>
+                            </li>
+                            <li>
+                                <a href="transactions-warranty_monitoring.html" >Warranty Monitoring</a>
+                            </li>                           
+
+                        </ul>
+                    </li>		
+                   <li>
+                        <a  href="scheduling.html"><i class="fa fa-calendar fa-3x"></i> Scheduling </a>                          
+                    </li>                                        			                     
+                     <li>
+                        <a href="#"><i class="fa fa-bell fa-3x"></i>Notifications<span class="fa arrow"></span></a>  
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="notifications-sms.html" >SMS</a>
+                            </li>
+                            <li>
+                                <a href="job_order-maintenance">E-MAIL</a>
+                            </li>
+                        </ul>
+                    </li>	
+					  <li>
+                        <a  href="#" ><i class="fa fa-table fa-3x" ></i> Inventory <span class="fa arrow"></span></a>
+                          <ul class="nav nav-second-level">
+                                <li>
+                                   <a href="inventory-adjustment.html">Inventory Adjustment</a>                                        
+                                </li>
+                                <li>
+                                   <a href="#">Inventory Item Movement<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="inventory-item-movement.html">Move Items</a>
+                                    </li>
+                                    <li>
+                                        <a href="inventory-item-movement-tracking.html" >Track Item Movement</a>
+                                    </li>       
+                                </ul>                                       
+                                </li>
+                          </ul>
+                    </li>                  
+                    <li>
+                        <a href="#" class="active-menu"><i class="fa fa-file fa-3x"></i> Reports<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="report-detailed.html">Sales</a>
+                            </li>
+                            <li>
+                                <a href="report-summary.html">Purchases</a>
+                            </li>
+                            <li>
+                                <a href="report-exceptional.html">Client</a>                             
+                            </li>
+                            <li>
+                                <a href="report-exceptional.html">Inventory</a>                             
+                            </li>
+                        </ul>
+                      </li>                  
+                    <li>
+                        <a href="#"><i class="fa fa-cogs fa-3x"></i> Settings<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="settings_backup-and-recovery.html">Backup and Recovery</a>
+                            </li>
+                            <li>
+                                <a href="report-summary.html">User Accounts</a>
+                            </li>
+                            <li>
+                                <a href="report-exceptional.html">Audit Log</a>                             
+                            </li>
+                        </ul>
+                      </li>                    	
+                </ul>    
+            </div>
+            
+        </nav> 
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">                    
+                </div>              
+                 <!-- /. ROW  -->                
+                    <!--FIRST ROW-->
+               <div class="row">
+                <div class="col-md-12">
+                    <h4>Sales Report  <i class="glyphicon glyphicon-file" style="margin-left: 5px;"></i></h4>
+                    <hr>
+                     <button class="btn btn-primary"  data-toggle="modal" data-target="#addNewClient"><i class="glyphicon glyphicon-share"></i> Export to Excel</button>
+                     <button class="btn btn-primary"  data-toggle="modal" data-target="#addNewClient"><i class="glyphicon glyphicon-share"></i> Export to PDF</button>
+                    <br>
+                    <br>                  
+                    <table>
+                        <tr>
+                            <td>Filter by</td>
+                            <td>
+                                <select class="form-control" style="width: 200px; margin: 10px 10px 10px 10px;">
+                                    <option>
+                                        Monthly
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                     <!--    Striped Rows Table  -->
+                    <div class="panel panel-default">
+                        
+                        <div class="panel-heading">
+                            Sales - Monthly
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>                                            
+                                            <th>Product Name</th>
+                                            <th>January</th>
+                                            <th>February</th>
+                                            <th>March</th>
+                                            <th>April</th>
+                                            <th>May</th>
+                                            <th>June</th>
+                                            <th>July</th>
+                                            <th>August</th>
+                                            <th>September</th>
+                                            <th>October</th>
+                                            <th>November</th>
+                                            <th>December</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Fire Extinguisher - Dry Chemical</td>     
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Smoke Detector</td>  
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Fire Hose</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Fire Hose</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Fire Extinguisher - HCFC Extinguisher</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                            <td style="text-align: center;">-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  End  Striped Rows Table  -->
+                    <!--End Advanced Tables -->
+                </div>
+            </div>                     
+                </div>
+                    
+                
+                    <!--SECOND ROW-->
+                    
+                 <!-- /. ROW  -->
+                <hr />                                                                    
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+     <!-- MORRIS CHART SCRIPTS -->
+     <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/js/morris/morris.js"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+    
+   <!--MODALS-->
+    <div class="modal fade" id="saveModal" role="dialog" style="width: 320px; top: 40%;left: 45%;">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                          <h4 class="modal-title">Confirm Save</h4>           
+                                        </div>                                                                               
+                                        <div class="modal-footer">     
+                                            <a href="#" class="btn btn-default" style="width: 90px;" data-toggle="modal" data-target="#confirmAddModal">Save</a>
+                                            <a href="#" class="btn btn-default" style="width: 90px;" data-dismiss="modal">Cancel</a>
+                                        </div>
+                                      </div>                                        
+								</div>
+							</div>
+    <div class="modal fade" id="addItems" role="dialog" style="width: 600px; top: 20%;left: 35%;">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                          <h4 class="modal-title">Add Items</h4>           
+                                        </div>                                           
+                                        <div class="modal-body" style="font-weight: 550; text-transform: uppercase;">                                         
+                                            <p>Type: 
+                                                <select style="font-weight: normal;">
+                                                    <option>
+                                                        --SELECT PRODUCT TYPE--
+                                                    </option>
+                                                </select>
+                                            </p>
+                                            <p>Quantity: <input type="number" style="width: 70px; padding: 5px; font-weight: normal;"></p>
+                                        </div>
+                                        <div class="modal-footer">     
+                                            <a href="#" class="btn btn-default" style="width: 90px;" data-toggle="modal" data-target="#confirmAddModal">Add</a>
+                                            <a href="#" class="btn btn-default" style="width: 90px;" data-dismiss="modal">Cancel</a>
+                                        </div>
+                                      </div>                                        
+								</div>
+							</div>
+</body>
+</html>

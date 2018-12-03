@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="assets/js/jquery.min.js"></script>
+    </head>
+<body>
+
+<!-- Favorite car:
+<input type="button" id="test" value="Volvo">
+<input type="text" id="testName">
+ -->
+
+<!-- <script>
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+            var name = $("#name").val;
+            var email = $("#email").val;
+            alert(name)
+            $("table tbody").append(markup);
+        });
+    });
+
+</script> -->
+<form>
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="email" placeholder="Email">
+    <button type="button" class="add-row" onclick="go()">Add Row</button>
+</form>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+<script type="text/javascript">
+    function go(){
+        alert($("#name").val());
+    }
+    
+</script>
+</body>
+</html>

@@ -36,6 +36,7 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                 <nav class="navbar-default navbar-side" role="navigation">
                 <div class="sidebar-collapse">
                 <?php
+                    $page = 'dashboard';
                     include "assets/requiredPages/sideNav.php";
                 ?>
             </div>

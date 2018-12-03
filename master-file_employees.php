@@ -41,6 +41,7 @@ font-size: 16px;"> Last access : 20 March 2018 &nbsp; <a href="login.html" class
                 <nav class="navbar-default navbar-side" role="navigation">
                 <div class="sidebar-collapse">
                 <?php
+                    $page = 'masterfile';
                     include "assets/requiredPages/sideNav.php";
                 ?>
             </div>

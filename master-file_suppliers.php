@@ -38,6 +38,7 @@
                 <nav class="navbar-default navbar-side" role="navigation">
                 <div class="sidebar-collapse">
                 <?php
+                    $page = 'masterfile';
                     include "assets/requiredPages/sideNav.php";    
                 ?>
             </div>

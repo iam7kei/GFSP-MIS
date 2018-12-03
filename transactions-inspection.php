@@ -14,6 +14,15 @@
     <link href="assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <script src="assets/js/jquery.min.js"></script>
+   <script>
+      $(document).ready(function(){
+        $("#selectClientID").change(function(){
+                   var clientName = $("#selectClientID option:selected").val();                
+                   $('#txtClientName').val(clientName);
+                });
+            });
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -27,10 +36,7 @@
                 </button>
                 <a class="navbar-brand" href="index.html">GFSP MIS</a> 
             </div>
-  <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+  <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -59,11 +65,21 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                                     <p style="padding-top: 0px;">Client: </p>                                     
                                 </td>
                                 <td>
-                                    <select style="padding: 2px; height: 35px; margin-right: 10px; width: 80%;" class="form-control">
-                                            <option>CLIENT001</option>
+                                    <select style="padding: 5px; height: 35px; margin-right: 10px; width: 200px;" class="form-control" id="selectClientID">
+                                    <option> --SELECT CLIENT ID-- </option>
+                                    <?php
+                                        require 'php_scripts/databaseConn.php';
+                                        $query = $conn->query("select * from `clients`") or die(mysqli_error());
+                                        while($fetch = $query->fetch_array()){
+                                        ?>  
+                                            <option value="<?php echo $fetch['clientName']?>"><?php echo $fetch['clientControlNo']?></option>
+                                        <?php
+                                            }
+                                            $conn->close();
+                                        ?>
                                         </select> 
                                 </td>
-                                <td colspan="2"><input type="text" value="BatCafe" disabled class="form-control input-sm" style="padding: 5px; height: 35px; font-size: 14px;"></td>
+                                <td colspan="2"><input type="text" disabled class="form-control input-sm" style="padding: 5px; height: 35px; font-size: 14px; width: 500px;" id="txtClientName"></td>
                             </tr>
                             
                             <tr>
@@ -205,6 +221,7 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
     <script src="assets/js/morris/morris.js"></script>
       <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
     
    <!--MODALS-->
     <div class="modal fade" id="saveModal" role="dialog" style="width: 320px; top: 40%;left: 45%;">

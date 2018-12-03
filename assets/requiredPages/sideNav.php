@@ -3,10 +3,10 @@
                     <img src="assets/img/find_user.png" class="user-image img-responsive"/>
 					</li>			
                     <li>
-                        <a href="index.php"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a href="index.php" class="<?php if($page == 'dashboard'){echo "active-menu";}?>"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                     </li>    
                     <li >
-                        <a  href="#"  class="active-menu"><i class="fa fa-folder fa-3x"></i>Master Files <span class="fa arrow"></span></a>
+                        <a  href="#" class="<?php if($page == 'masterfile'){echo "active-menu";}?>"><i class="fa fa-folder fa-3x"></i>Master Files <span class="fa arrow"></span></a>
                           <ul class="nav nav-second-level">
                                 <li>
                                    <a href="master-file_client.php">Client</a>                                        
@@ -20,7 +20,7 @@
                           </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-edit fa-3x"></i> Transactions<span class="fa arrow"></span> </a>
+                        <a href="#" class="<?php if($page == 'transactions'){echo "active-menu";}?>"><i class="fa fa-edit fa-3x"></i> Transactions<span class="fa arrow"></span> </a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="transactions-sales.php" >Sales</a>
@@ -47,10 +47,10 @@
                         </ul>
                     </li>		
                    <li>
-                        <a  href="scheduling.php"><i class="fa fa-calendar fa-3x"></i> Scheduling </a>                          
+                        <a href="scheduling.php" class="<?php if($page == 'scheduling'){echo "active-menu";}?>"><i class="fa fa-calendar fa-3x"></i> Scheduling </a>                          
                     </li>                                        			                     
                      <li>
-                        <a href="#"><i class="fa fa-bell fa-3x"></i>Notifications<span class="fa arrow"></span></a>  
+                        <a href="#" class="<?php if($page == 'notifications'){echo "active-menu";}?>"><i class="fa fa-bell fa-3x"></i>Notifications<span class="fa arrow"></span></a>  
                          <ul class="nav nav-second-level">
                             <li>
                                 <a href="notifications-sms.php" >SMS</a>
@@ -61,7 +61,7 @@
                         </ul>
                     </li>	
 					  <li>
-                        <a  href="#"><i class="fa fa-table fa-3x"></i> Inventory <span class="fa arrow"></span></a>
+                        <a  href="#" class="<?php if($page == 'inventory'){echo "active-menu";}?>"><i class="fa fa-table fa-3x"></i> Inventory <span class="fa arrow"></span></a>
                           <ul class="nav nav-second-level">
                                 <li>
                                    <a href="inventory-products.html">Inventory Products</a>                                        
@@ -80,7 +80,7 @@
                           </ul>
                     </li>                  
                     <li>
-                        <a href="#"><i class="fa fa-file fa-3x"></i> Reports<span class="fa arrow"></span></a>
+                        <a href="#" class="<?php if($page == 'reports'){echo "active-menu";}?>"><i class="fa fa-file fa-3x"></i> Reports<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="report-detailed.html">Sales</a>
@@ -97,7 +97,7 @@
                         </ul>
                       </li>                  
                     <li>
-                        <a href="#"><i class="fa fa-cogs fa-3x"></i> Settings<span class="fa arrow"></span></a>
+                        <a href="#" class="<?php if($page == 'settings'){echo "active-menu";}?>"><i class="fa fa-cogs fa-3x"></i> Settings<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="settings_backup-and-recovery.html">Backup and Recovery</a>

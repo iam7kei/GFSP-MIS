@@ -16,6 +16,15 @@
     <link href="assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <script src="assets/js/jquery.min.js"></script>
+   <script>
+      $(document).ready(function(){
+        $("#selectClientId").change(function(){
+                   var clientName = $("#selectClientId option:selected").val();                
+                   $('#txtClientName').val(clientName);                  
+                });
+      });
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -29,15 +38,13 @@
                 </button>
                 <a class="navbar-brand" href="index.html">GFSP MIS</a> 
             </div>
-  <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+  <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
                 <div class="sidebar-collapse">
              <?php
+                    $page = "transactions";
                     include "assets/requiredPages/sideNav.php";
                 ?>
             </div>
@@ -69,18 +76,29 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                                 <p style="padding-top: 10px; margin-right: 10px;">Client:</p> 
                             </td>
                             <td>
-                                <select class="form-control">
+                                <select class="form-control" id="selectClientId">
                                             <option>
-                                                CLIENT001
+                                               --SELECT CLIENT ID--
                                             </option>
+                                            <?php
+                                                            require 'php_scripts/databaseConn.php';
+                                                            $query = $conn->query("select * from `clients`") or die(mysqli_error());
+                                                            while($fetch = $query->fetch_array()){
+                                                            ?>  
+                                                                <option value="<?php echo $fetch['clientName']?>">
+                                                                    <?php 
+                                                                        echo $fetch['clientControlNo']
+                                                                    ?>
+                                                                </option>
+                                                            <?php 
+                                                            }
+                                                            $conn->close();
+                                                            ?>
                                         </select>
                             </td>
                             <td>
-                                <input type="text" value="Wayne Industries" class="form-control" disabled style="width: 450px; margin-left: 10px;">
-                            </td>
-                            <td>
-                                <input type="text" value="sales@wayneindustries.com" class="form-control" style="margin-left: 10px;" disabled>
-                            </td>
+                                <input type="text" class="form-control" disabled style="width: 550px; margin-left: 10px;" id="txtClientName">
+                            </td>                            
                         </tr>
                             <tr>
                                 <td>
@@ -99,7 +117,7 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                 </div>                                                       
                                 <div class="row">
                                 <div class="col-md-12">                    
-                     <button class="btn btn-primary"  data-toggle="modal" data-target="#addItems"><i class="glyphicon glyphicon-plus"></i> Add Items</button>
+                     <button class="btn btn-primary"  data-toggle="modal" data-target="#addItems" "><i class="glyphicon glyphicon-plus"></i> Add Items</button>
                     <br>
                     <br>
                     <!-- Client List -->
@@ -120,13 +138,23 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                                         </tr>
                                     </thead>                              
                                     <tbody>
-                                        <tr style="text-align: center;">
-                                            <td> 50 </td>
-                                            <td>unit</td>
-                                            <td>Fire Extinguisher - Dry Chemical</td>
-                                            <td>2,000</td>
-                                            <td>50</td>
-                                        </tr>
+                                    <?php
+                                            require 'php_scripts/databaseConn.php';
+                                            $query = $conn->query("select * from `sales`") or die(mysqli_error());
+                                            while($fetch = $query->fetch_array()){
+                                            ?>      
+                                            <tr>
+                                                <td><?php echo $fetch['quantity']?></td>
+                                                <td><?php echo $fetch['unit']?></td>
+                                                <td><?php echo $fetch['itmDesc']?></td>
+                                                <td><?php echo $fetch['unitPrice']?></td>
+                                                <td><?php echo $fetch['totalNum']?></td>
+                                                <td>
+                                                <?php
+                                            }
+                                            $conn->close();
+                                            ?>    
+                                            </tr>
                                     </tbody>
                                 </table>
                                 <span style="float: right;">TOTAL PRICE: <input type="text" class="form-control" disabled value="100,000"></span>
@@ -279,7 +307,8 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
     <script src="assets/js/custom.js"></script>
     
    <!--MODALS-->
-    <div class="modal fade" id="addItems" role="dialog" style="width: 600px; top: 20%;left: 35%;">
+    <div class="modal fade" id="addItems" role="dialog" style="width: 50%; top: 20%;left: 35%;">
+                <form method="post" action="php_scripts/addClientPO.php">
                                     <div class="modal-dialog">
                                       <!-- Modal content-->
                                       <div class="modal-content">
@@ -287,22 +316,65 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                                           <h4 class="modal-title">Add Items</h4>           
                                         </div>                                           
-                                        <div class="modal-body" style="font-weight: 550; text-transform: uppercase;">                                         
-                                            <p>Type: 
-                                                <select style="font-weight: normal;">
+                                        <div class="modal-body" style="font-weight: 550; text-transform: uppercase;">    
+                                            <table>
+                                                <tr>     
+                                                    <td>
+                                                        ITEM:     
+                                                    </td>
+                                                    <td>
+                                                    <select style="font-weight: normal; margin-left: 5%; margin-right: 5%;" name="itemType" class="form-control">
                                                     <option>
                                                         --SELECT PRODUCT TYPE--
                                                     </option>
+                                                    <?php
+                                                        echo "<option>";
+                                                        echo "Fire Extinguisher";
+                                                        echo "</option>";
+                                                        echo "<option>";
+                                                        echo "Smoke Detecor";
+                                                        echo "</option>";
+                                                    ?>
                                                 </select>
-                                            </p>
-                                            <p>Quantity: <input type="number" style="width: 70px; padding: 5px; font-weight: normal;"></p>
+                                                    </td>
+                                                    <td colspan="2">
+                                                    <select style="font-weight: normal; width: 100%; margin-left: 10%;" name="item" class="form-control">
+                                                    <option>
+                                                        --SELECT ITEM--
+                                                    </option>
+                                                    <?php
+                                                        echo "<option>";
+                                                        echo "Fire Extinguisher";
+                                                        echo "</option>";
+                                                        echo "<option>";
+                                                        echo "Smoke Detecor";
+                                                        echo "</option>";
+                                                    ?>
+                                                </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p style="margin-top: 5%; margin-left: 5%;">Quantity: </p>
+                                                    </td>
+                                                    <td>
+                                                    <input type="number" name="quantity"  class="form-control" style="margin-left: 5%; margin-top: 5%; width: 70px; padding: 5px; font-weight: normal;">
+                                                    </td>
+                                                    <td>Unit Price: </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled style="width: 150px;">
+                                                    </td>
+                                                </tr>
+                                            </table>                                                                                                                             
                                         </div>
                                         <div class="modal-footer">     
-                                            <a href="#" class="btn btn-default" style="width: 90px;" data-toggle="modal" data-target="#confirmAddModal">Add</a>
+                                            <input type="submit" class="btn btn-default" style="width: 90px;" value="Add">
                                             <a href="#" class="btn btn-default" style="width: 90px;" data-dismiss="modal">Cancel</a>
                                         </div>
                                       </div>                                        
-								</div>
-							</div>
+                                    </form>
+                                </div>
+                            </div>
+                                        
 </body>
 </html>

@@ -14,6 +14,15 @@
     <link href="assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <script src="assets/js/jquery.min.js"></script>
+   <script>
+      $(document).ready(function(){
+        $("#selectClientID").change(function(){
+            var clientName = $("#selectClientID option:selected").val();                
+                $('#txtClientName').val(clientName);   
+                });
+    });
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -36,6 +45,7 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                 <nav class="navbar-default navbar-side" role="navigation">
                 <div class="sidebar-collapse">
              <?php
+                    $page = "transactions";
                     include "assets/requiredPages/sideNav.php";
                 ?>
             </div>
@@ -59,12 +69,28 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                                         <p style="padding-top: 10px; margin-right: 10px;">Client:</p> 
                                     </td>
                                     <td>
-                                        <select style="height: 35px;" class="form-control">
-                                            <option>CLIENT001</option>
+                                    <select class="form-control" id="selectClientID">
+                                            <option>
+                                               --SELECT CLIENT ID--
+                                            </option>
+                                            <?php
+                                                require 'php_scripts/databaseConn.php';
+                                                $query = $conn->query("select * from `clients`") or die(mysqli_error());
+                                                while($fetch = $query->fetch_array()){
+                                                ?>  
+                                                    <option value="<?php echo $fetch['clientName']?>">
+                                                        <?php 
+                                                            echo $fetch['clientControlNo']
+                                                        ?>
+                                                    </option>
+                                                <?php 
+                                                }
+                                                $conn->close();
+                                            ?>
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" value="BatCafe" disabled style="padding: 2px; width: 450px; height: 35px;  margin-left: 10px;" class="form-control">
+                                        <input type="text" id="txtClientName" disabled style="padding: 2px; width: 450px; height: 35px;  margin-left: 10px;" class="form-control">
                                     </td>
                                 </tr>
                             </table>                        

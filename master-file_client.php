@@ -38,6 +38,7 @@
                 <nav class="navbar-default navbar-side" role="navigation">
                 <div class="sidebar-collapse">
                  <?php
+                    $page = 'masterfile';
                     include "assets/requiredPages/sideNav.php";
                 ?>        
             </div>
@@ -139,7 +140,7 @@
                                                         <tbody>
                                                             <?php
                                                             require 'php_scripts/databaseConn.php';
-                                                            $query = $conn->query("select * from `clients` where `clientType` = 'Walk In'") or die(mysqli_error());
+                                                            $query = $conn->query("select * from `clients` where `clientType` = 'Company'") or die(mysqli_error());
                                                             while($fetch = $query->fetch_array()){
                                                             ?>                                      
                                                             <tr>
@@ -331,7 +332,6 @@
 							</div>  
                         <?php
                 }
-
                 ?>      
              <!-- /. PAGE INNER  -->
             </div>
@@ -347,7 +347,7 @@
      <!-- DATA TABLE SCRIPTS -->
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
+    <script>
             $(document).ready(function () {
                 $('#walkInDataTable').dataTable();  
                 $('#dataTable-example').dataTable();                

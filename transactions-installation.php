@@ -14,6 +14,20 @@
     <link href="assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <script src="assets/js/jquery.min.js"></script>
+   <script>
+      $(document).ready(function(){
+        $("#selectClientID").change(function(){
+            var clientName = $("#selectClientID option:selected").val();                
+                $('#txtClientName').val(clientName);   
+                });
+
+                $("#btnAddItem").click(function(){ 
+                var markup = "<tr><td>"+$("#itemQty").val()+"</td><td>"+$("#newItemName").val()+"</td></tr>"
+                $("#itemsTbl").append(markup);
+            });
+    });
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -27,19 +41,16 @@
                 </button>
                 <a class="navbar-brand" href="index.html">GFSP MIS</a> 
             </div>
-  <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+  <div style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
                 <div class="sidebar-collapse">
              <?php
+                    $page = "transactions";
                     include "assets/requiredPages/sideNav.php";
                 ?>
             </div>
-            
         </nav> 
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
@@ -58,12 +69,28 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                                 <p style="padding-top: 10px; margin-right: 10px;">Client: </p> 
                             </td>
                             <td>
-                                 <select class="form-control">
-                                            <option>CLIENT001</option>
+                            <select class="form-control" id="selectClientID">
+                                            <option>
+                                               --SELECT CLIENT ID--
+                                            </option>
+                                            <?php
+                                                require 'php_scripts/databaseConn.php';
+                                                $query = $conn->query("select * from `clients`") or die(mysqli_error());
+                                                while($fetch = $query->fetch_array()){
+                                                ?>  
+                                                    <option value="<?php echo $fetch['clientName']?>">
+                                                        <?php 
+                                                            echo $fetch['clientControlNo']
+                                                        ?>
+                                                    </option>
+                                                <?php 
+                                                }
+                                                $conn->close();
+                                            ?>
                                         </select>
                             </td>
                             <td colspan="2" style="width: 350px;">
-                                <input type="text" value="BatCafe" disabled style="margin-left: 10px;" class="form-control">
+                                <input type="text" id="txtClientName" disabled style="margin-left: 10px;" class="form-control">
                             </td>
                         </table>
                                                              
@@ -72,7 +99,7 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                     <br>
                      <div class="row">
                 <div class="col-md-12">                    
-                     <button class="btn btn-primary"  data-toggle="modal" data-target="#addItems"><i class="glyphicon glyphicon-pencil"></i>   Edit Table</button>                                       
+                     <button class="btn btn-primary"  data-toggle="modal" data-target="#addItems"><i class="glyphicon glyphicon-plus"></i>Add Items</button>                                       
                     <br>
                     <br>
                     <!-- Client List -->
@@ -89,79 +116,11 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                                             <th style="text-align: center;">Unit</th> 
                                             <th style="text-align: center;">Item Description</th>     
                                             <th style="text-align: center;">Item Type</th>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: center;">10</td>
-                                            <td style="text-align: center;">Units</td>
-                                            <td style="text-align: center;">Fire Extinguisher - HCFC</td>
-                                            <td style="text-align: center;">Fire Extinguisher</td>
-                                            
-                                        </tr>
+                                        </tr>                                        
                                     </thead>
-                                   <!-- <tr>
-                                        <td>FE3132</td>
-                                        <td>Fire Extinguisher HFCFC 123</td>
-                                        <td style="text-align: center;">150</td>                                                                           
-                                        <td>
-                                            <center>
-                                                <div class="btn-group">
-										  <button class="btn btn-primary" style="width: 70px;" data-toggle="modal" data-target="#editClient"><i class="fa fa-pencil" style="margin-right: 5px;"></i>Edit</button>
-										  <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
-										  <ul class="dropdown-menu" style="background-color: #d9534f">
-											<li><button class="btn btn-danger" style="border: 0;"><i class="fa fa-trash"></i> Delete</button></li>											
-										  </ul>
-										</div>
-                                            </center>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>FE4232</td>
-                                        <td>Fire Extinguisher - Dry Chemical</td>
-                                        <td style="text-align: center;">180</td>                                                                                     
-                                        <td>
-                                            <center>
-                                               <div class="btn-group">
-										  <button class="btn btn-primary" style="width: 70px;"><i class="fa fa-pencil" style="margin-right: 5px;"></i>Edit</button>
-										  <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
-										  <ul class="dropdown-menu" style="background-color: #d9534f">
-											<li><button class="btn btn-danger" style="border: 0;"><i class="fa fa-trash"></i> Delete</button></li>											
-										  </ul>
-										</div>
-                                            </center>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>FH4232</td>
-                                        <td>Fire Hose</td>
-                                        <td style="text-align: center;">200</td>                                                                           
-                                        <td>
-                                            <center>
-                                                <div class="btn-group">
-										  <button class="btn btn-primary" style="width: 70px;"><i class="fa fa-pencil" style="margin-right: 5px;"></i>Edit</button>
-										  <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
-										  <ul class="dropdown-menu" style="background-color: #d9534f">
-											<li><button class="btn btn-danger" style="border: 0;"><i class="fa fa-trash"></i> Delete</button></li>											
-										  </ul>
-										</div>
-                                            </center>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>SD3213</td>
-                                        <td>Smoke Detector</td>
-                                        <td style="text-align: center;">150</td>                                                                             
-                                        <td>
-                                            <center>
-                                                <div class="btn-group">
-										  <button class="btn btn-primary" style="width: 70px;"><i class="fa fa-pencil" style="margin-right: 5px;"></i>Edit</button>
-										  <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
-										  <ul class="dropdown-menu" style="background-color: #d9534f">
-											<li><button class="btn btn-danger" style="border: 0;"><i class="fa fa-trash"></i> Delete</button></li>											
-										  </ul>
-										</div>
-                                            </center>
-                                        </td>
-                                    </tr>-->                                    
+                                   <tbody id="itemsTbl">
+
+                                   </tbody>                                 
                                 </table>
                                
                             </div>
@@ -224,18 +183,46 @@ font-size: 16px;"> Last access : 28 September 2018 &nbsp; <a href="login.html" c
                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                                           <h4 class="modal-title">Add Items</h4>           
                                         </div>                                           
-                                        <div class="modal-body" style="font-weight: 550; text-transform: uppercase;">                                         
-                                            <p>Type: 
-                                                <select style="font-weight: normal;">
+                                        <div class="modal-body" style="font-weight: 550; text-transform: uppercase;">
+                                        <table id="dataTables-example">     
+                                        <tr>
+                                            <td>
+                                                    Item Type:
+                                            </td>
+                                            <td>
+                                                <select class="form-control" style="margin-left: 10px; width: 300px;">
                                                     <option>
-                                                        --SELECT PRODUCT TYPE--
+                                                        --SELECT ITEM TYPE--
+                                                    </option>
+                                                    <option>
+                                                        Fire Extinguisher
+                                                    </option>
+                                                    <option>
+                                                        Smoke Detector
                                                     </option>
                                                 </select>
-                                            </p>
-                                            <p>Quantity: <input type="number" style="width: 70px; padding: 5px; font-weight: normal;"></p>
+                                            </td>                              
+                                            </tr>   
+                                            <tr>
+                                            <td>
+                                                   <p> Item Name: </p>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control input-sm" aria-controls="dataTables-example" id="newItemName" style="margin-left: 10px; width: 300px; margin-top: 10px">
+                                            </td>                              
+                                            </tr>                            
+                                            <tr>
+                                            <td>
+                                                    <p>Quantity:</p>
+                                            </td>
+                                            <td>
+                                                <input require type="number" class="form-control input-sm" aria-controls="dataTables-example" id="itemQty" style="margin-left: 10px;margin-top: 10px; width: 70px;">
+                                            </td>                              
+                                            </tr>
+                                        </table>
                                         </div>
                                         <div class="modal-footer">     
-                                            <a href="#" class="btn btn-default" style="width: 90px;" data-toggle="modal" data-target="#confirmAddModal">Add</a>
+                                        <input type="button" class="btn btn-default" style="width: 90px;" id="btnAddItem" value="Add" data-dismiss="modal">
                                             <a href="#" class="btn btn-default" style="width: 90px;" data-dismiss="modal">Cancel</a>
                                         </div>
                                       </div>                                        
